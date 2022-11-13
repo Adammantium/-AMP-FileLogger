@@ -12,11 +12,15 @@ namespace FileLogger {
 
         private string logFile = "server.log";
         public override void OnStart() {
+            File.AppendAllLines(logFile, new string[] {"","",""});
             Log.onLogMessage += OnLogMessage;
         }
 
         private void OnLogMessage(Log.Type type, string message) {
-            File.AppendAllLines(logFile, new string[] { type.ToString() + " " + message });
+            File.AppendAllLines(logFile, new string[] { 
+                                                       $"[{ DateTime.Now.ToString("MM/dd/yyyy HH:mm") }] { type } { message }"
+                                                      }
+                               );
         }
     }
 }
