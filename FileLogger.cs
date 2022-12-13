@@ -13,16 +13,20 @@ namespace FileLogger {
 
         private string folder  = "logs";
         private string logFile = "server.{0}.log";
+
         public override void OnStart() {
             if(!Directory.Exists(folder)) Directory.CreateDirectory(folder);
 
+            logFile = string.Format(logFile, ModManager.serverInstance.port);
+
             logFile = folder + "/" + logFile;
-            File.AppendAllLines(string.Format(logFile, ModManager.serverInstance.port), new string[] {"","",""});
+
+            File.AppendAllLines(logFile, new string[] {"","",""});
             Log.onLogMessage += OnLogMessage;
         }
 
         private void OnLogMessage(Log.Type type, string message) {
-            File.AppendAllLines(string.Format(logFile, ModManager.serverInstance.port), new string[] { 
+            File.AppendAllLines(logFile, new string[] { 
                                                        $"[{ DateTime.Now.ToString("MM/dd/yyyy HH:mm") }] { type } { message }"
                                                       }
                                );
