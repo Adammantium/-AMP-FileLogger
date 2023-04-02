@@ -17,7 +17,7 @@ namespace FileLogger {
         public override void OnStart() {
             if(!Directory.Exists(folder)) Directory.CreateDirectory(folder);
 
-            logFile = string.Format(logFile, ModManager.serverInstance.port);
+            logFile = string.Format(logFile, ServerInit.port);
 
             logFile = folder + "/" + logFile;
 
