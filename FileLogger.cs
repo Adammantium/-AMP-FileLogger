@@ -1,5 +1,4 @@
-﻿using AMP;
-using AMP.DedicatedServer;
+﻿using AMP.DedicatedServer;
 using AMP.Logging;
 using System;
 using System.IO;
